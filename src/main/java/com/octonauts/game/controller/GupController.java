@@ -52,7 +52,7 @@ public class GupController {
             @ApiResponse(code = 410, message = "This gup is already active!", response = ErrorMessage.class),
             @ApiResponse(code = 408, message = "Not enough points!", response = ErrorMessage.class),
             @ApiResponse (code = 409, message = "No gup with such id found in your octopod!", response = ErrorMessage.class)})
-    @PutMapping("/octopod/crew/{id}")
+    @PutMapping("/octopod/gup/{id}")
     public ResponseEntity<Object> activateGup(@PathVariable(name = "id") Long gupId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findUserByName(username).get();
