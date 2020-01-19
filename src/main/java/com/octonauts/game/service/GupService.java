@@ -55,10 +55,10 @@ public class GupService {
     }
 
     public int pointsPaidForGups(Octopod octopod) {
-        if (gupRepository.countPointForActivate(octopod) == null){
+        if (gupRepository.countPointForActivate(octopod, true) == null){
             return 0;
         }
-        return gupRepository.countPointForActivate(octopod);
+        return gupRepository.countPointForActivate(octopod, true);
     }
 
     public GupDTO activate(Gup gup) {

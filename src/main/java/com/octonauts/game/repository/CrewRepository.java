@@ -13,6 +13,6 @@ import java.util.List;
 public interface CrewRepository extends CrudRepository<CrewMember, Long> {
     List<CrewMember> findAllByOctopod(Octopod octopod);
     @Query("SELECT SUM(c.pointsForActivate) FROM CrewMember c WHERE c.octopod = ?1 " +
-            "AND c.active = 1")
-    Integer countPointForActivate(@Param("octopod") Octopod octopod);
+            "AND c.active = ?2")
+    Integer countPointForActivate(@Param("octopod") Octopod octopod, @Param("active") Boolean active);
 }

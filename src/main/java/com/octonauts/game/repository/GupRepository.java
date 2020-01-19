@@ -14,8 +14,8 @@ import java.util.Optional;
 public interface GupRepository extends CrudRepository<Gup, Long> {
     List<Gup> findAllByOctopod(Octopod octopod);
     @Query("SELECT SUM(g.pointsForActivate) FROM Gup g WHERE g.octopod = ?1 " +
-     "AND g.active = 1")
-    Integer countPointForActivate(@Param("octopod") Octopod octopod);
+     "AND g.active =?2")
+    Integer countPointForActivate(@Param("octopod") Octopod octopod, @Param("active") Boolean active);
 
     @Override
     Optional<Gup> findById(Long gupId);

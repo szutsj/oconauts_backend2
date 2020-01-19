@@ -60,10 +60,10 @@ public class CrewService {
     }
 
     public int pointsPaidForCrew(Octopod octopod) {
-        if (crewRepository.countPointForActivate(octopod) == null){
+        if (crewRepository.countPointForActivate(octopod, true) == null){
             return 0;
         }
-        return crewRepository.countPointForActivate(octopod);
+        return crewRepository.countPointForActivate(octopod, true);
     }
 
     public Optional<CrewMember> findById(Long id){
