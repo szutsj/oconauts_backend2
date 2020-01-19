@@ -13,7 +13,7 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private AnimalType type;
-    @OneToOne(mappedBy = "animal", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "animals", cascade = CascadeType.ALL)
     private Sickness sickness;
     private LocalDateTime treatmentStartedAt;
     private LocalDateTime treatmentFinishedAt;

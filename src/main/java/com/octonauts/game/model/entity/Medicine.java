@@ -5,7 +5,7 @@ import com.octonauts.game.model.enums.MedicineType;
 
 import javax.persistence.*;
 
-@Table(name = "Medicines")
+@Table(name = "medicines")
 @Entity
 public class Medicine {
 
