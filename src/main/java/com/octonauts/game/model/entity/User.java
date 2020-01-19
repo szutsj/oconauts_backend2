@@ -12,9 +12,9 @@ public class User  implements Comparable<User>{
     private String username;
     private String password;
     private int points;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Octopod octopod;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Animal> patientTreatedList;
 
     public User() {

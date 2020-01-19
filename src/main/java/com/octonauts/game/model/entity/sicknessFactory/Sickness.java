@@ -15,7 +15,7 @@ public abstract class Sickness {
     private long id;
     private SicknessType type;
     private int level;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sicknesses")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sickness")
     private List<Cure> cureList;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "animals_id")

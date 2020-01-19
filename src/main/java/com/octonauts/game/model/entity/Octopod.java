@@ -12,11 +12,11 @@ public class Octopod {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id")
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopods")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopod")
     private List<CrewMember> crewMemberList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopods")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopod")
     private List<Gup> gupList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopods")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "octopod")
     private List<Medicine> medicineList;
 
     public Octopod() {
