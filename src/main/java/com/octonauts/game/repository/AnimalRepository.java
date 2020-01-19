@@ -12,12 +12,15 @@ import java.util.List;
 
 @Repository
 public interface AnimalRepository extends CrudRepository<Animal, Long> {
-    Animal save(Animal animal);
+
+    @Override
+    <S extends Animal> S save(S s);
     List<Animal> findAnimalsByTreatmentStartedAtIsNull();
     List<Animal> findAnimalsByUser(User user);
     @Query("SELECT SUM(a.pointsGivenForCure) FROM Animal a WHERE a.user = ?1 " +
             "AND a.treatmentStartedAt IS NOT NULL " +
             "AND a.treatmentFinishedAt < ?2")
-    Integer countCurePoints(User user, LocalDateTime current);
+    Integer countCurePoints(@Param("User")User user, LocalDateTime current);
+
 
 }

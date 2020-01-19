@@ -126,4 +126,5 @@ public class AnimalService {
         }
         return animalRepository.countCurePoints(user, LocalDateTime.now());
     }
+
 }
