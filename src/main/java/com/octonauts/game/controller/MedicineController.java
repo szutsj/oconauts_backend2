@@ -50,15 +50,15 @@ public class MedicineController {
             @ApiResponse (code = 409, message = "Invalid medicine type!", response = ErrorMessage.class),
             @ApiResponse(code = 408, message = "Not enough points!", response = ErrorMessage.class)})
     @PutMapping("/octopod/medicines")
-    public ResponseEntity<Object> buyMedicine(@RequestBody String type) {
+    public ResponseEntity<Object> buyMedicine(@RequestBody BuyMedicineRequestDTO buyMedicineRequestDTO) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findUserByName(username).get();
         Octopod octopod = octopodRepository.findByUser(user).get();
         user = userService.recalculatePoints(user);
-        if (type.isEmpty() || type == null || medicineService.invalidMedicineType(type)){
+        if (buyMedicineRequestDTO == null || buyMedicineRequestDTO.getType().isEmpty() || medicineService.invalidMedicineType(buyMedicineRequestDTO.getType())){
             return ResponseEntity.status(409).body(new ErrorMessage("Invalid medicine type!"));
         }
-        MedicineType medicineType = MedicineFactory.getMedicineType(type);
+        MedicineType medicineType = MedicineFactory.getMedicineType(buyMedicineRequestDTO.getType());
         Medicine medicine = MedicineFactory.getMedicine(medicineType, octopod);
         if (user.getPoints() < medicine.getPrice()){
             return ResponseEntity.status(408).body(new ErrorMessage("Not enough points!"));
