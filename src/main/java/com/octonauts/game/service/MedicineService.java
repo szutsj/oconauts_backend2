@@ -1,11 +1,8 @@
 package com.octonauts.game.service;
 
-import com.octonauts.game.model.dto.CrewDTO;
-import com.octonauts.game.model.dto.CrewMemberDTO;
 import com.octonauts.game.model.dto.MedicineDTO;
 import com.octonauts.game.model.dto.MedicineStockDTO;
-import com.octonauts.game.model.entity.CrewMember;
-import com.octonauts.game.model.entity.Medicine;
+import com.octonauts.game.model.entity.medicineFactory.Medicine;
 import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.enums.MedicineType;
 import com.octonauts.game.repository.MedicineRepository;
@@ -18,7 +15,7 @@ import java.util.List;
 @Service
 public class MedicineService {
 
-    private MedicineRepository medicineRepository;
+     private MedicineRepository medicineRepository;
 
     @Autowired
     public MedicineService(MedicineRepository medicineRepository) {
@@ -56,4 +53,20 @@ public class MedicineService {
         }
         return medicineRepository.countPrices(octopod);
     }
+
+    public boolean invalidMedicineType(String type) {
+        boolean invalid = true;
+        for (MedicineType medicineType : MedicineType.values()) {
+            if (medicineType.toString().equalsIgnoreCase(type)){
+                invalid = false;
+            }
+        }
+        return invalid;
+    }
+
+    public MedicineDTO buyMedicine(Medicine medicine) {
+        medicineRepository.save(medicine);
+        return createMedicineDTO(medicine);
+    }
+
 }

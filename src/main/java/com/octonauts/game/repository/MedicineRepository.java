@@ -1,6 +1,6 @@
 package com.octonauts.game.repository;
 
-import com.octonauts.game.model.entity.Medicine;
+import com.octonauts.game.model.entity.medicineFactory.Medicine;
 import com.octonauts.game.model.entity.Octopod;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

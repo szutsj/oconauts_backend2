@@ -1,6 +1,7 @@
-package com.octonauts.game.model.entity;
+package com.octonauts.game.model.entity.medicineFactory;
 
 import com.octonauts.game.contsants.MedicinePrices;
+import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.enums.MedicineType;
 
 import javax.persistence.*;
@@ -93,4 +94,5 @@ public class Medicine {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
 }
