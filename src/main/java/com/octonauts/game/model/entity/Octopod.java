@@ -1,5 +1,7 @@
 package com.octonauts.game.model.entity;
 
+import com.octonauts.game.model.entity.medicineFactory.Medicine;
+
 import javax.persistence.*;
 import java.util.List;
 
