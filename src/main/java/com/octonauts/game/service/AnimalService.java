@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 public class AnimalService {
-
+    public static final int MAX_PATIENT_NUMBER = 10;
     private AnimalRepository animalRepository;
     private SicknessService sicknessService;
 
@@ -129,13 +129,19 @@ public class AnimalService {
     }
 
     public void generatePatients() {
-        Animal animal = new Animal();
-        Sickness sickness = sicknessService.createNewSickness();
-        animal.setSickness(sickness);
-        animal.setPointsGivenForCure(sickness.getLevel() * 3);
-        animal.setType(randomAnimalTypeGenerator());
-        sickness.setAnimal(animalRepository.save(animal));
-        sicknessService.save(sickness);
+        if (lessPatinetThanMax()){
+            Animal animal = new Animal();
+            Sickness sickness = sicknessService.createNewSickness();
+            animal.setSickness(sickness);
+            animal.setPointsGivenForCure(sickness.getLevel() * 3);
+            animal.setType(randomAnimalTypeGenerator());
+            sickness.setAnimal(animalRepository.save(animal));
+            sicknessService.save(sickness);
+        }
+    }
+
+    public boolean lessPatinetThanMax(){
+         return MAX_PATIENT_NUMBER  <= animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
     }
 
 }
