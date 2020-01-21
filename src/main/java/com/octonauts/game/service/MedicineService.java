@@ -2,10 +2,12 @@ package com.octonauts.game.service;
 
 import com.octonauts.game.model.dto.MedicineDTO;
 import com.octonauts.game.model.dto.MedicineStockDTO;
+import com.octonauts.game.model.entity.User;
 import com.octonauts.game.model.entity.medicineFactory.Medicine;
 import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.enums.MedicineType;
 import com.octonauts.game.repository.MedicineRepository;
+import com.octonauts.game.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,17 @@ import java.util.List;
 @Service
 public class MedicineService {
 
-     private MedicineRepository medicineRepository;
+    private MedicineRepository medicineRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public MedicineService(MedicineRepository medicineRepository) {
+    public MedicineService(MedicineRepository medicineRepository, UserRepository userRepository) {
         this.medicineRepository = medicineRepository;
+        this.userRepository = userRepository;
     }
+
+
+
 
     public List<Medicine> initMedicineStock(Octopod octopod) {
         List<Medicine> medicineStock = new ArrayList<>();
@@ -64,8 +71,10 @@ public class MedicineService {
         return invalid;
     }
 
-    public MedicineDTO buyMedicine(Medicine medicine) {
+    public MedicineDTO buyMedicine(Medicine medicine, User user) {
+        user.setPoints(user.getPoints() - medicine.getPrice());
         medicineRepository.save(medicine);
+        userRepository.save(user);
         return createMedicineDTO(medicine);
     }
 

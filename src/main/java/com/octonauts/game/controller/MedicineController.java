@@ -63,7 +63,7 @@ public class MedicineController {
         if (user.getPoints() < medicine.getPrice()){
             return ResponseEntity.status(408).body(new ErrorMessage("Not enough points!"));
         }
-        return ResponseEntity.status(200).body(medicineService.buyMedicine(medicine));
+        return ResponseEntity.status(200).body(medicineService.buyMedicine(medicine, user));
     }
 
 }
