@@ -12,6 +12,7 @@ import com.octonauts.game.model.enums.AnimalType;
 import com.octonauts.game.model.enums.MedicineType;
 import com.octonauts.game.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -128,6 +129,7 @@ public class AnimalService {
         return animalRepository.countCurePoints(user, LocalDateTime.now());
     }
 
+    @Scheduled(fixedRate = 1000)
     public void generatePatients() {
         if (lessPatinetThanMax()){
             Animal animal = new Animal();
@@ -140,7 +142,7 @@ public class AnimalService {
         }
     }
 
-    public boolean lessPatinetThanMax(){
+    private boolean lessPatinetThanMax(){
          return MAX_PATIENT_NUMBER  <= animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
     }
 
