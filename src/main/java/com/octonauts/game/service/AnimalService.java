@@ -4,6 +4,7 @@ import com.octonauts.game.model.dto.PatientDTO;
 import com.octonauts.game.model.dto.PatinentListDTO;
 import com.octonauts.game.model.dto.SicknessDTO;
 import com.octonauts.game.model.entity.Animal;
+import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.entity.User;
 import com.octonauts.game.model.entity.cureFactory.Cure;
 import com.octonauts.game.model.entity.sicknessFactory.Sickness;
@@ -55,18 +56,18 @@ public class AnimalService {
         return new PatinentListDTO(patientList);
     }
 
-    public PatientDTO createNewPatient() {
-        Animal animal = new Animal();
-        PatientDTO patientDTO;
-        Sickness sickness = sicknessService.createNewSickness();
-        animal.setSickness(sickness);
-        animal.setPointsGivenForCure(sickness.getLevel() * 3);
-        animal.setType(randomAnimalTypeGenerator());
-        sickness.setAnimal(animalRepository.save(animal));
-        sicknessService.save(sickness);
-        patientDTO = createPatientDTO(animal);
-        return patientDTO;
-    }
+//    public PatientDTO createNewPatient() {
+//        Animal animal = new Animal();
+//        PatientDTO patientDTO;
+//        Sickness sickness = sicknessService.createNewSickness();
+//        animal.setSickness(sickness);
+//        animal.setPointsGivenForCure(sickness.getLevel() * 3);
+//        animal.setType(randomAnimalTypeGenerator());
+//        sickness.setAnimal(animalRepository.save(animal));
+//        sicknessService.save(sickness);
+//        patientDTO = createPatientDTO(animal);
+//        return patientDTO;
+//    }
 
     public PatientDTO startCure(Animal animal, User user){
         animal.setTreatmentStartedAt(LocalDateTime.now());
@@ -125,6 +126,11 @@ public class AnimalService {
             return 0;
         }
         return animalRepository.countCurePoints(user, LocalDateTime.now());
+    }
+
+    public void generatePatients(){
+
+
     }
 
 }
