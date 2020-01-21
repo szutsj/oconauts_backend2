@@ -51,14 +51,14 @@ public class AnimalController {
         return ResponseEntity.status(200).body(patinentListDTO);
     }
 
-//    @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
-//            required = true, dataType = "string", paramType = "header")})
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = PatientDTO.class)})
-//    @PostMapping("/octopod/newPatient")
-//    public ResponseEntity<Object> createNewPatient() {
-//        PatientDTO patinentDTO = animalService.createNewPatient();
-//        return ResponseEntity.status(200).body(patinentDTO);
-//    }
+    @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
+            required = true, dataType = "string", paramType = "header")})
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = PatientDTO.class)})
+    @PostMapping("/octopod/newPatient")
+    public ResponseEntity<Object> createNewPatient() {
+        PatientDTO patinentDTO = animalService.createNewPatient();
+        return ResponseEntity.status(200).body(patinentDTO);
+    }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
             required = true, dataType = "string", paramType = "header")})
