@@ -55,7 +55,7 @@ public class AnimalService {
         }
         return new PatinentListDTO(patientList);
     }
-
+//
 //    public PatientDTO createNewPatient() {
 //        Animal animal = new Animal();
 //        PatientDTO patientDTO;
@@ -128,9 +128,14 @@ public class AnimalService {
         return animalRepository.countCurePoints(user, LocalDateTime.now());
     }
 
-    public void generatePatients(){
-
-
+    public void generatePatients() {
+        Animal animal = new Animal();
+        Sickness sickness = sicknessService.createNewSickness();
+        animal.setSickness(sickness);
+        animal.setPointsGivenForCure(sickness.getLevel() * 3);
+        animal.setType(randomAnimalTypeGenerator());
+        sickness.setAnimal(animalRepository.save(animal));
+        sicknessService.save(sickness);
     }
 
 }
