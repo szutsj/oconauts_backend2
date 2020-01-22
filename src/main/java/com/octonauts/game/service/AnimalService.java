@@ -133,12 +133,14 @@ public class AnimalService {
     public void generatePatients() {
         if (lessPatinetThanMax()){
             Animal animal = new Animal();
+            animalRepository.save(animal);
             Sickness sickness = sicknessService.createNewSickness();
+            sickness.setAnimal(animal);
             animal.setSickness(sickness);
             animal.setPointsGivenForCure(sickness.getLevel() * 3);
             animal.setType(randomAnimalTypeGenerator());
-            sickness.setAnimal(animalRepository.save(animal));
             sicknessService.save(sickness);
+            animalRepository.save(animal);
         }
     }
 
