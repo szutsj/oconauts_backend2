@@ -133,7 +133,7 @@ public class AnimalService {
     public void generatePatients() {
         if (lessPatinetThanMax()){
             Animal animal = new Animal();
-            animalRepository.save(animal);
+            animal = animalRepository.save(animal);
             Sickness sickness = sicknessService.createNewSickness();
             sickness.setAnimal(animal);
             animal.setSickness(sickness);
@@ -145,7 +145,7 @@ public class AnimalService {
     }
 
     private boolean lessPatinetThanMax(){
-         return MAX_PATIENT_NUMBER  >= animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
+         return MAX_PATIENT_NUMBER  > animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
     }
 
 }
