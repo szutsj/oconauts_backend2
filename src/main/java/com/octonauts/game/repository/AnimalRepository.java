@@ -21,7 +21,7 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
             "AND a.treatmentStartedAt IS NOT NULL " +
             "AND a.treatmentFinishedAt < ?2")
     Integer countCurePoints(@Param("User")User user, LocalDateTime current);
-    @Query("COUNT(a.id) FROM Animal a " +
+    @Query("SELECT COUNT(a.id) FROM Animal a " +
             "WHERE a.treatmentStartedAt IS NULL " +
             "OR a.treatmentFinishedAt < ?1")
     Integer countNotYetCuredPatients(LocalDateTime current);
