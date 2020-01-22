@@ -16,7 +16,8 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
     @Override
     <S extends Animal> S save(S s);
     List<Animal> findAnimalsByTreatmentStartedAtIsNull();
-    Integer countAllByTreatmentStartedAtNullOrTreatmentFinishedAtBefore(LocalDateTime localDateTime);
+    Integer countAllByTreatmentStartedAtNull();
+    Integer countAllByTreatmentFinishedAtBefore(LocalDateTime localDateTime);
     List<Animal> findAnimalsByUser(User user);
     @Query("SELECT SUM(a.pointsGivenForCure) FROM Animal a WHERE a.user = ?1 " +
             "AND a.treatmentStartedAt IS NOT NULL " +

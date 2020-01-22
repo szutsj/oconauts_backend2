@@ -145,7 +145,8 @@ public class AnimalService {
     }
 
     private boolean lessPatinetThanMax(){
-         return MAX_PATIENT_NUMBER  > animalRepository.countAllByTreatmentStartedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
+        int notCuredPatients =  animalRepository.countAllByTreatmentStartedAtNull() + animalRepository.countAllByTreatmentFinishedAtBefore(LocalDateTime.now();
+        return MAX_PATIENT_NUMBER  > notCuredPatients;
     }
 
 }
