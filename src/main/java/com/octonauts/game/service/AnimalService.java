@@ -129,7 +129,7 @@ public class AnimalService {
         return animalRepository.countCurePoints(user, LocalDateTime.now());
     }
 
-    @Scheduled(fixedRate = 100000)
+    @Scheduled(fixedDelay = )
     public void generatePatients() {
         if (lessPatinetThanMax()){
             Animal animal = new Animal();
