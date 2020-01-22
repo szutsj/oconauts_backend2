@@ -129,7 +129,7 @@ public class AnimalService {
         return animalRepository.countCurePoints(user, LocalDateTime.now());
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 100000)
     public void generatePatients() {
         if (lessPatinetThanMax()){
             Animal animal = new Animal();
@@ -143,7 +143,7 @@ public class AnimalService {
     }
 
     private boolean lessPatinetThanMax(){
-         return MAX_PATIENT_NUMBER  <= animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
+         return MAX_PATIENT_NUMBER  >= animalRepository.countAllByTreatmentFinishedAtNullOrTreatmentFinishedAtBefore(LocalDateTime.now());
     }
 
 }
