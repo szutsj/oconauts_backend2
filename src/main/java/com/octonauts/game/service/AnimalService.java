@@ -57,17 +57,16 @@ public class AnimalService {
         return new PatinentListDTO(patientList);
     }
 
-    public PatientDTO createNewPatient() {
+    public void createNewPatient() {
         Animal animal = new Animal();
-        PatientDTO patientDTO;
+        animal = animalRepository.save(animal);
         Sickness sickness = sicknessService.createNewSickness();
+        sickness.setAnimal(animal);
         animal.setSickness(sickness);
         animal.setPointsGivenForCure(sickness.getLevel() * 3);
         animal.setType(randomAnimalTypeGenerator());
-        sickness.setAnimal(animalRepository.save(animal));
         sicknessService.save(sickness);
-        patientDTO = createPatientDTO(animal);
-        return patientDTO;
+        animalRepository.save(animal);
     }
 
     public PatientDTO startCure(Animal animal, User user){
@@ -131,21 +130,13 @@ public class AnimalService {
 
     @Scheduled(fixedDelay = 1000)
     public void generatePatients() {
-        if (lessPatinetThanMax()){
-            Animal animal = new Animal();
-            animal = animalRepository.save(animal);
-            Sickness sickness = sicknessService.createNewSickness();
-            sickness.setAnimal(animal);
-            animal.setSickness(sickness);
-            animal.setPointsGivenForCure(sickness.getLevel() * 3);
-            animal.setType(randomAnimalTypeGenerator());
-            sicknessService.save(sickness);
-            animalRepository.save(animal);
+        if (lessPatientThanMax()){
+            createNewPatient();
         }
     }
 
-    private boolean lessPatinetThanMax(){
-        int notCuredPatients =  animalRepository.countAllByTreatmentStartedAtNull() + animalRepository.countAllByTreatmentFinishedAtIsNotNullAndtAndTreatmentFinishedAtIsBefore(LocalDateTime.now());
+    private boolean lessPatientThanMax(){
+        int notCuredPatients =  animalRepository.countNotYetCuredPatients(LocalDateTime.now());
         return MAX_PATIENT_NUMBER  > notCuredPatients;
     }
 
