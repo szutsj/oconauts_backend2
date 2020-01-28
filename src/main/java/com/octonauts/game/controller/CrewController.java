@@ -35,7 +35,7 @@ public class CrewController {
             required = true, dataType = "string", paramType = "header")})
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = CrewDTO.class)})
     @GetMapping("/octopod/crew")
-    public ResponseEntity<Object> crewList() {
+    public ResponseEntity<Object> getCrewList() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findUserByName(username).get();
         Octopod octopod = octopodRepository.findByUser(user).get();

@@ -1,6 +1,11 @@
 package com.octonauts.game.service;
 
 import com.octonauts.game.contsants.MedicinePrices;
+import com.octonauts.game.model.dto.CrewDTO;
+import com.octonauts.game.model.dto.GupListDTO;
+import com.octonauts.game.model.dto.MedicineStockDTO;
+import com.octonauts.game.model.dto.OctopodDTO;
+import com.octonauts.game.model.dto.PatinentListDTO;
 import com.octonauts.game.model.dto.UserAndPoint;
 import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.entity.User;
@@ -71,4 +76,22 @@ public class OctopodService {
         userAndPoint.setPoints(actualPoints);
         return userAndPoint;
     }
+
+    public OctopodDTO createOctopodDTO(Octopod octopod, User user) {
+        CrewDTO crewDTO = crewService.createCrewList(octopod);
+        GupListDTO gupListDTO = gupService.createGupList(octopod);
+        MedicineStockDTO medicineStockDTO = medicineService.createMedicineList(octopod);
+        PatinentListDTO patinentListDTO = animalService.createUnderTreatmentList(user);
+        UserAndPoint userAndPoint = udatePoints(user);
+        return  new OctopodDTO(crewDTO, gupListDTO, medicineStockDTO, patinentListDTO, userAndPoint);
+    }
+
+    public Octopod findOctopodByUser(User user) {
+        return octopodRepository.findOctopodByUser(user).orElse(null);
+    }
+
+    public Octopod findOctopodById(Long octopodId) {
+            return octopodRepository.findById(octopodId).orElse(null);
+        }
+
 }
