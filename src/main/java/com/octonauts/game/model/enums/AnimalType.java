@@ -1,5 +1,5 @@
 package com.octonauts.game.model.enums;
 
 public enum AnimalType {
-    WHALE, LEMONSHARK, ORCA, WHITESHARK, TURTLE
+    WHALE, LEMONSHARK, ORCA, WHITESHARK, TURTLE, BOWHEAD_WHALE
 }

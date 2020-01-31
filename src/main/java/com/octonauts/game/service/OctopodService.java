@@ -90,8 +90,4 @@ public class OctopodService {
         return octopodRepository.findOctopodByUser(user).orElse(null);
     }
 
-    public Octopod findOctopodById(Long octopodId) {
-            return octopodRepository.findById(octopodId).orElse(null);
-        }
-
 }
