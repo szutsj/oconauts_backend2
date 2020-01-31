@@ -1,8 +1,8 @@
 package com.octonauts.game.model.dto;
 
 public class OctopodDTO {
-    private CrewDTO crew;
-    private GupListDTO gups;
+    private CrewDTO crewStatus;
+    private GupListDTO gupStatus;
     private MedicineStockDTO medicineStock;
     private PatinentListDTO patinentList;
     private UserAndPoint userAndPoint;
@@ -10,28 +10,28 @@ public class OctopodDTO {
     public OctopodDTO() {
     }
 
-    public OctopodDTO(CrewDTO crew, GupListDTO gups, MedicineStockDTO medicineStock, PatinentListDTO patinentList, UserAndPoint userAndPoint) {
-        this.crew = crew;
-        this.gups = gups;
+    public OctopodDTO(CrewDTO crewStatus, GupListDTO gupStatus, MedicineStockDTO medicineStock, PatinentListDTO patinentList, UserAndPoint userAndPoint) {
+        this.crewStatus = crewStatus;
+        this.gupStatus = gupStatus;
         this.medicineStock = medicineStock;
         this.patinentList = patinentList;
         this.userAndPoint = userAndPoint;
     }
 
-    public CrewDTO getCrew() {
-        return crew;
+    public CrewDTO getCrewStatus() {
+        return crewStatus;
     }
 
-    public void setCrew(CrewDTO crew) {
-        this.crew = crew;
+    public void setCrewStatus(CrewDTO crewStatus) {
+        this.crewStatus = crewStatus;
     }
 
-    public GupListDTO getGups() {
-        return gups;
+    public GupListDTO getGupStatus() {
+        return gupStatus;
     }
 
-    public void setGups(GupListDTO gups) {
-        this.gups = gups;
+    public void setGupStatus(GupListDTO gupStatus) {
+        this.gupStatus = gupStatus;
     }
 
     public MedicineStockDTO getMedicineStock() {
