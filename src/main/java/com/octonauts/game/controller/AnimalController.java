@@ -28,6 +28,7 @@ public class AnimalController {
         this.userService = userService;
     }
 
+
     @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
             required = true, dataType = "string", paramType = "header")})
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = PatinentListDTO.class)})
