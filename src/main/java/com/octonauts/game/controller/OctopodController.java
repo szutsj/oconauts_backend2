@@ -36,17 +36,6 @@ public class OctopodController {
         this.userService = userService;
     }
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
-            required = true, dataType = "string", paramType = "header")})
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = UserAndPoint.class)})
-    @PutMapping("/octopod/updatePoints")
-    public ResponseEntity<Object> updatePoints() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findUserByName(username).get();
-        UserAndPoint userAndPoint = octopodService.udatePoints(user);
-        return ResponseEntity.status(200).body(userAndPoint);
-    }
-
     @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token", required = true, dataType = "string", paramType = "header")})
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = OctopodDTO.class)})
     @GetMapping("/octopod")
@@ -55,6 +44,17 @@ public class OctopodController {
         User user = userService.findUserByName(username).get();
         Octopod octopod = octopodService.findOctopodByUser(user);
         return ResponseEntity.status(200).body(octopodService.createOctopodDTO(octopod, user));
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "token", value = "Authorization token",
+            required = true, dataType = "string", paramType = "header")})
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = UserAndPoint.class)})
+    @GetMapping("/octopod/points")
+    public ResponseEntity<Object> getPoints() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByName(username).get();
+        UserAndPoint userAndPoint = octopodService.udatePoints(user);
+        return ResponseEntity.status(200).body(userAndPoint);
     }
 
 }
