@@ -1,9 +1,7 @@
 package com.octonauts.game.model.entity;
 
 import com.octonauts.game.contsants.ActivationPoints;
-import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.enums.CrewMembers;
-import com.octonauts.game.model.enums.MedicineType;
 
 import javax.persistence.*;
 

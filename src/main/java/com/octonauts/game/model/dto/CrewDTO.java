@@ -3,21 +3,21 @@ package com.octonauts.game.model.dto;
 import java.util.List;
 
 public class CrewDTO {
+    List<CrewMemberDTO> crewMembers;
 
-    List<CrewMemberDTO> crew;
-
-    public CrewDTO(List<CrewMemberDTO> crew) {
-        this.crew = crew;
-    }
 
     public CrewDTO() {
     }
 
-    public List<CrewMemberDTO> getCrew() {
-        return crew;
+    public CrewDTO(List<CrewMemberDTO> crewMembers) {
+        this.crewMembers = crewMembers;
     }
 
-    public void setCrew(List<CrewMemberDTO> crew) {
-        this.crew = crew;
+    public List<CrewMemberDTO> getCrewMembers() {
+        return crewMembers;
+    }
+
+    public void setCrewMembers(List<CrewMemberDTO> crewMembers) {
+        this.crewMembers = crewMembers;
     }
 }
