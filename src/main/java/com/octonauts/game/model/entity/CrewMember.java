@@ -79,7 +79,7 @@ public class CrewMember {
         if (name.equals(CrewMembers.KWAZII)){
             return ActivationPoints.ACTIVATE_POINT_KWAZII;
         }
-        if (name.equals(CrewMembers.DASHI)){
+        if (name.equals(CrewMembers.DASHY)){
             return ActivationPoints.ACTIVATE_POINT_DASHY;
         }
         if (name.equals(CrewMembers.SHELLINGTON)){
