@@ -55,6 +55,7 @@ public class CrewService {
         CrewMemberDTO crewMemberDTO = new CrewMemberDTO();
         crewMemberDTO.setName(crewMember.getName());
         crewMemberDTO.setActive(crewMember.isActive());
+        crewMemberDTO.setActivationPoints(crewMember.getPointsForActivate());
         return crewMemberDTO;
     }
 

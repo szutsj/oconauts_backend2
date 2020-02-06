@@ -9,6 +9,9 @@ public abstract class ActivationPoints {
     public static final int ACTIVATE_POINT_SHELLINGTON = 10;
     public static final int ACTIVATE_POINT_PROFESSOR = 20;
     public static final int ACTIVATE_POINT_TUNIP = 25;
+    public static final int ACTIVATE_POINT_BARROT = 25;
+    public static final int ACTIVATE_POINT_HALIBEET = 25;
+    public static final int ACTIVATE_POINT_TUMINOW = 25;
     public static final int ACTIVATE_POINT_GUPA = 10;
     public static final int ACTIVATE_POINT_GUPB = 20;
     public static final int ACTIVATE_POINT_GUPC = 30;
