@@ -95,7 +95,7 @@ public class CrewMember {
             return ActivationPoints.ACTIVATE_POINT_TUNIP;
         }
         if (name.equals(CrewMembers.BARROT)){
-            return ActivationPoints.ACTIVATE_POINT_TUNIP;
+            return ActivationPoints.ACTIVATE_POINT_BARROT;
         }
         if (name.equals(CrewMembers.HALIBEET)){
             return ActivationPoints.ACTIVATE_POINT_HALIBEET;

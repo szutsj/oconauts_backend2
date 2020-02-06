@@ -12,5 +12,4 @@ public enum CrewMembers {
     BARROT,
     TUMINOW,
     HALIBEET
-
 }

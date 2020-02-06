@@ -16,4 +16,5 @@ public abstract class ActivationPoints {
     public static final int ACTIVATE_POINT_GUPB = 20;
     public static final int ACTIVATE_POINT_GUPC = 30;
     public static final int ACTIVATE_POINT_GUPD = 40;
+    public static final int ACTIVATE_POINT_GUPE = 60;
 }

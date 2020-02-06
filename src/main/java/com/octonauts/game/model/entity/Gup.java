@@ -82,6 +82,11 @@ public class Gup {
         if (type.equals(GupType.GUPD)){
             return ActivationPoints.ACTIVATE_POINT_GUPD;
         }
+        if (type.equals(GupType.GUPE)){
+            return ActivationPoints.ACTIVATE_POINT_GUPE;
+        }
+
+
         return 0;
     }
 
