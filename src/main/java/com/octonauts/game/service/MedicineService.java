@@ -51,6 +51,7 @@ public class MedicineService {
     public MedicineDTO createMedicineDTO(Medicine medicine){
         MedicineDTO medicineDTO = new MedicineDTO();
         medicineDTO.setType(medicine.getType());
+        medicineDTO.setPrice(medicine.getPrice());
         return medicineDTO;
     }
 

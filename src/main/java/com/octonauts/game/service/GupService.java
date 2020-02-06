@@ -51,6 +51,7 @@ public class GupService {
         GupDTO gupDTO = new GupDTO();
         gupDTO.setType(gup.getType());
         gupDTO.setActive(gup.isActive());
+        gupDTO.setActivationPoints(gup.getPointsForActivate());
         return gupDTO;
     }
 

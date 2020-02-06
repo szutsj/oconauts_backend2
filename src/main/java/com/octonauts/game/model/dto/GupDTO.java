@@ -6,6 +6,7 @@ public class GupDTO {
 
     private GupType type;
     private boolean active;
+    private int activationPoints;
 
     public GupDTO() {
     }
@@ -24,5 +25,13 @@ public class GupDTO {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getActivationPoints() {
+        return activationPoints;
+    }
+
+    public void setActivationPoints(int activationPoints) {
+        this.activationPoints = activationPoints;
     }
 }
