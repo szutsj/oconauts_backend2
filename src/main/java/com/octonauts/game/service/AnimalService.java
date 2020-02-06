@@ -63,7 +63,7 @@ public class AnimalService {
         Sickness sickness = sicknessService.createNewSickness();
         sickness.setAnimal(animal);
         animal.setSickness(sickness);
-        animal.setPointsGivenForCure(sickness.getLevel() * 3);
+        animal.setPointsGivenForCure(sickness.getLevel());
         animal.setType(randomAnimalTypeGenerator());
         sicknessService.save(sickness);
         animalRepository.save(animal);
