@@ -85,7 +85,7 @@ public class AnimalService {
         int randomNumber = (int)(Math.random() * length);
         int i = 0;
         for (AnimalType animalType : AnimalType.values()){
-            if (i == randomNumber & notExistAmongActivePatients(animalType)){
+            if (i == randomNumber && notExistAmongActivePatients(animalType)){
                 return animalType;
             }
             i++;
