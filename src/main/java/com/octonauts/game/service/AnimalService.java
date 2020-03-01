@@ -20,6 +20,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class AnimalService {
@@ -82,12 +84,23 @@ public class AnimalService {
         int randomNumber = (int)(Math.random() * length);
         int i = 0;
         for (AnimalType animalType : AnimalType.values()){
-            if (i == randomNumber){
+            if (i == randomNumber & notExistAmongActivePatients(animalType)){
                 return animalType;
             }
             i++;
         }
         return AnimalType.ORCA;
+    }
+
+    private boolean notExistAmongActivePatients(AnimalType animalType) {
+        List<Animal> existingAnimals = (List<Animal>) animalRepository.findAll();
+        Predicate<Animal> hasThisType = animal -> animalType.equals(animal.getType());
+        boolean result =  existingAnimals.stream()
+                .filter(animal -> animal.getTreatmentFinishedAt().equals(null)
+                        || animal.getTreatmentFinishedAt().isBefore(LocalDateTime.now()))
+                .collect(Collectors.toList())
+                .stream().noneMatch(hasThisType);
+        return result;
     }
 
     public PatientDTO createPatientDTO(Animal animal){
