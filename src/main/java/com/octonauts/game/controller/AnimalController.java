@@ -6,6 +6,7 @@ import com.octonauts.game.model.dto.PatinentListDTO;
 import com.octonauts.game.model.entity.Animal;
 import com.octonauts.game.model.entity.User;
 import com.octonauts.game.service.AnimalService;
+import com.octonauts.game.service.OctopodService;
 import com.octonauts.game.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -21,11 +22,13 @@ public class AnimalController {
 
     private AnimalService animalService;
     private UserService userService;
+    private  OctopodService octopodService;
 
     @Autowired
-    public AnimalController(AnimalService animalService, UserService userService) {
+    public AnimalController(AnimalService animalService, UserService userService, OctopodService octopodService) {
         this.animalService = animalService;
         this.userService = userService;
+        this.octopodService = octopodService;
     }
 
 
@@ -71,6 +74,7 @@ public class AnimalController {
             required = true, dataType = "string", paramType = "header")})
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = PatientDTO.class),
             @ApiResponse(code = 410, message = "This animal is already under treatment!", response = ErrorMessage.class),
+            @ApiResponse (code = 408, message = "Not enough medicine to cure this patient!", response = ErrorMessage.class),
             @ApiResponse (code = 409, message = "No animal with such id found!", response = ErrorMessage.class)})
     @PutMapping("/octopod/cure/{id}")
     public ResponseEntity<Object> startTreatment(@PathVariable(name = "id") Long animalId) {
@@ -81,7 +85,10 @@ public class AnimalController {
             if (animal.getTreatmentFinishedAt() != null){
                 return ResponseEntity.status(409).body(new ErrorMessage("This animal is already under treatment!"));
             }
-            return ResponseEntity.status(200).body(animalService.startCure(animal, user));
+            if (!animalService.checkIfOctopodHasAllMedicinesNeededForCure(animal.getSickness().getCureList(), user.getOctopod().getMedicineList())){
+                return ResponseEntity.status(408).body(new ErrorMessage("Not enough medicine to cure this patient!"));
+            }
+            return ResponseEntity.status(200).body(octopodService.startCure(animal, user));
         }
         return ResponseEntity.status(409).body(new ErrorMessage("No animal with such id found!"));
     }

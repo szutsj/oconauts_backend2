@@ -7,6 +7,7 @@ import com.octonauts.game.model.entity.Animal;
 import com.octonauts.game.model.entity.Octopod;
 import com.octonauts.game.model.entity.User;
 import com.octonauts.game.model.entity.cureFactory.Cure;
+import com.octonauts.game.model.entity.medicineFactory.Medicine;
 import com.octonauts.game.model.entity.sicknessFactory.Sickness;
 import com.octonauts.game.model.enums.AnimalType;
 import com.octonauts.game.model.enums.MedicineType;
@@ -153,4 +154,17 @@ public class AnimalService {
         return MAX_PATIENT_NUMBER  > notCuredPatients;
     }
 
+    public boolean checkIfOctopodHasAllMedicinesNeededForCure(List<Cure> cureList, List<Medicine> medicineList) {
+        List<MedicineType> medicineTypesOctopodHas = cureList
+                .stream()
+                .map(cure -> cure.getType())
+                .collect(Collectors.toList());
+        List<MedicineType> medicineTypesNeeded = medicineList
+                .stream()
+                .map(cure -> cure.getType())
+                .collect(Collectors.toList());
+        medicineTypesNeeded.removeAll(medicineTypesOctopodHas);
+
+        return medicineTypesNeeded.isEmpty();
+    }
 }

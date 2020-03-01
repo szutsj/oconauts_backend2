@@ -1,10 +1,12 @@
 package com.octonauts.game.service;
 
 import com.octonauts.game.model.entity.User;
+import com.octonauts.game.model.entity.cureFactory.Cure;
 import com.octonauts.game.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
